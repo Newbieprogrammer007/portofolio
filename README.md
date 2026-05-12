@@ -18,7 +18,7 @@ porto/
 |-- index.html
 |-- README.md
 |-- assets/
-|   `-- dimas-robby-candra-resume.pdf
+|   `-- 
 |-- css/
 |   `-- styles.css
 `-- js/
@@ -48,7 +48,7 @@ porto/
 - `css/styles.css`
   Styling custom yang tidak efisien jika ditulis sebagai utility class, termasuk nav mobile animation, reveal motion, elegant card hover, dan scroll cue.
 
-- `assets/dimas-robby-candra-resume.pdf`
+- `assets/`
   File CV yang diunduh dari tombol `Resume / CV`.
 
 ## Fitur Aktif Saat Ini
@@ -138,7 +138,7 @@ git push -u origin main
 
 - File `.nojekyll` sudah disediakan agar GitHub Pages menyajikan repo ini sebagai static site apa adanya.
 - Path asset pada project ini sudah relatif, jadi aman untuk mode project site maupun user site.
-- CV di `assets/dimas-robby-candra-resume.pdf` akan ikut bisa diunduh setelah repo dipublish.
+- CV di `assets/` akan ikut bisa diunduh setelah repo dipublish.
 
 ## Urutan Load Penting
 
