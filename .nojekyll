@@ -1,0 +1,6 @@
+# File: .nojekyll
+# Tujuan: Memastikan GitHub Pages menyajikan static files repo ini tanpa proses Jekyll.
+# Dipakai oleh: GitHub Pages saat publish repository.
+# Dependensi utama: Deploy GitHub Pages dari branch/repository ini.
+# Fungsi public/utama: Menonaktifkan pipeline Jekyll default di GitHub Pages.
+# Side effect penting: File static disajikan apa adanya dari repository.

@@ -1,0 +1,23 @@
+# File: .gitignore
+# Tujuan: Mengabaikan file lokal sementara agar repo tetap bersih saat dipush ke GitHub.
+# Dipakai oleh: Git saat add/status/commit.
+# Dependensi utama: Workflow development lokal dan GitHub repository.
+# Fungsi public/utama: Menyaring cache editor, OS files, dan log/debug file yang tidak perlu dipublish.
+# Side effect penting: Mencegah file lokal tertentu ikut ter-commit.
+
+# OS / Explorer
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Python simple server / cache
+__pycache__/

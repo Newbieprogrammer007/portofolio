@@ -1,0 +1,316 @@
+<!--
+  File: index.html
+  Tujuan: Template utama portfolio dan susunan seluruh section UI.
+  Dipakai oleh: Browser sebagai entry page static site.
+  Dependensi utama: js/tailwind.config.js, css/styles.css, js/data.js, js/render.js, js/nav.js, Tailwind CDN.
+  Fungsi public/utama: Menyediakan markup untuk nav, hero, experience, skills, certifications, project, contact.
+  Side effect penting: Load font/CDN, load script render UI, bind anchor navigation.
+-->
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Portfolio of Dimas Robby Candra — IT Infrastructure & Support Specialist based in Jakarta."/>
+    <title>Dimas Robby Candra | IT Infrastructure &amp; Support Portfolio</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CDN (must come before config) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./js/tailwind.config.js"></script>
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="./css/styles.css"/>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
+
+    <!-- ================================================================
+         HEADER / NAV
+    ================================================================ -->
+    <header class="bg-surface/80 backdrop-blur-xl top-0 sticky border-b border-outline-variant/30 shadow-sm z-50">
+        <nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+
+            <div class="font-headline-md text-lg md:text-headline-md tracking-tight text-on-surface" data-site-name>
+                Dimas Robby Candra
+            </div>
+
+            <!-- Desktop links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-label-md text-label-md text-primary relative active-dot cursor-pointer transition-opacity active:opacity-70" href="#overview">Overview</a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative" href="#experience">Experience</a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative" href="#skills">Skills</a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative" href="#contact">Contact</a>
+            </div>
+
+            <!-- Mobile burger -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn md:hidden p-2" aria-label="Toggle navigation" aria-controls="mobile-nav" aria-expanded="false">
+                <span class="mobile-menu-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </nav>
+
+        <!-- Mobile dropdown -->
+        <div id="mobile-nav" class="mobile-nav-panel md:hidden bg-surface border-t border-outline-variant/20 px-margin-mobile py-4 space-y-4 shadow-sm" aria-hidden="true">
+            <a class="block font-label-md text-label-md text-primary" href="#overview">Overview</a>
+            <a class="block font-label-md text-label-md text-on-surface-variant" href="#experience">Experience</a>
+            <a class="block font-label-md text-label-md text-on-surface-variant" href="#skills">Skills</a>
+            <a class="block font-label-md text-label-md text-on-surface-variant" href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+             SECTION: Hero (Overview)
+        ============================================================ -->
+        <section id="overview" class="relative isolate overflow-hidden max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-20 pb-36 md:py-section-gap min-h-[calc(100svh-5rem)] md:min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center">
+            <div class="absolute inset-x-0 top-0 -z-10 h-full bg-[radial-gradient(circle_at_top,_rgba(233,193,118,0.18),_transparent_38%),linear-gradient(180deg,_rgba(251,249,248,1)_0%,_rgba(245,243,243,0.92)_100%)]"></div>
+            <div class="space-y-8 max-w-4xl">
+                <span class="font-label-md text-label-md tracking-widest text-on-surface-variant uppercase" data-site-role data-reveal="up">
+                    IT Infrastructure Specialist
+                </span>
+
+                <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface" data-site-name data-reveal="up" data-reveal-delay="120">
+                    Dimas Robby Candra
+                </h1>
+
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed" data-reveal="up" data-reveal-delay="220">
+                    Building reliable systems, secure operations, and efficient workplace technology.
+                    Expertly navigating the intersection of IT Support and Infrastructure management.
+                </p>
+
+                <!-- Hero tags — injected by render.js -->
+                <div id="hero-tags" class="flex flex-wrap justify-center gap-3 pt-4" data-reveal="up" data-reveal-delay="320"></div>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal="up" data-reveal-delay="420">
+                    <a href="#contact" class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform active:scale-95">
+                        Establish Connection
+                        <span class="material-symbols-outlined" style="font-variation-settings:'opsz' 20;">arrow_forward</span>
+                    </a>
+                    <a href="#experience" class="inline-flex items-center gap-2 px-6 py-4 rounded-lg border border-outline-variant/50 font-label-md text-label-md text-on-surface hover:border-primary hover:text-primary transition-colors">
+                        View Experience
+                    </a>
+                </div>
+            </div>
+            <a href="#experience" class="hero-scroll-cue" aria-label="Scroll for more information">
+                <span class="hero-scroll-text">Scroll for more information</span>
+                <span class="hero-scroll-indicator" aria-hidden="true">
+                    <span class="hero-scroll-dot"></span>
+                </span>
+            </a>
+        </section>
+
+        <!-- ============================================================
+             SECTION: About / Stats
+        ============================================================ -->
+        <section class="bg-surface-container-low py-20 md:py-section-gap">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid md:grid-cols-12 gap-10 md:gap-gutter items-center">
+
+                <div class="md:col-span-5 space-y-6" data-reveal="left">
+                    <h2 class="font-headline-lg text-headline-lg">Bridging technical precision with operational excellence.</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Dedicated professional with a proven track record in maintaining robust infrastructure
+                        and providing Tier 2 support. My approach combines technical rigor with a user-centric
+                        mindset to ensure seamless enterprise performance.
+                    </p>
+                </div>
+
+                <!-- Stats — injected by render.js -->
+                <div id="stats-grid" class="md:col-start-7 md:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION: Experience
+        ============================================================ -->
+        <section id="experience" class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20 md:py-section-gap">
+            <div class="mb-20" data-reveal="up">
+                <h2 class="font-headline-lg text-headline-lg mb-4">Professional Experience</h2>
+                <div class="w-16 h-1 bg-tertiary-fixed-dim"></div>
+            </div>
+
+            <!-- Experience entries — injected by render.js -->
+            <div id="experience-list" class="space-y-16"></div>
+        </section>
+
+        <!-- ============================================================
+             SECTION: Skills (Bento Grid)
+        ============================================================ -->
+        <section id="skills" class="bg-surface-container-highest py-20 md:py-section-gap">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+
+                <div class="text-center mb-20" data-reveal="up">
+                    <h2 class="font-headline-lg text-headline-lg mb-4">Technical Proficiency</h2>
+                    <p class="text-on-surface-variant font-body-md max-w-xl mx-auto">
+                        Specialized skill sets engineered for modern enterprise environments.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+                    <!-- Network card (tall) -->
+                    <div class="bg-surface p-8 rounded-lg luxury-shadow md:row-span-2 flex flex-col elegant-card" data-reveal="up">
+                        <span class="material-symbols-outlined text-primary mb-6" style="font-size:40px;">settings_ethernet</span>
+                        <h3 class="font-headline-md text-headline-md mb-4">Network Support</h3>
+                        <!-- Injected by render.js -->
+                        <ul id="skill-network" class="mt-6 space-y-3 font-label-md text-label-md text-on-surface-variant"></ul>
+                    </div>
+
+                    <!-- System Admin -->
+                    <div class="bg-surface p-8 rounded-lg luxury-shadow elegant-card" data-reveal="up" data-reveal-delay="120">
+                        <h3 class="font-headline-md text-headline-md mb-4">System Admin</h3>
+                        <div id="skill-sysadmin" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <!-- Enterprise Tools -->
+                    <div class="bg-surface p-8 rounded-lg luxury-shadow elegant-card" data-reveal="up" data-reveal-delay="220">
+                        <h3 class="font-headline-md text-headline-md mb-4">Enterprise Tools</h3>
+                        <div id="skill-enterprise" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <!-- Security Ops (wide) -->
+                    <div class="bg-primary p-8 rounded-lg md:col-span-2 text-on-primary elegant-card" data-reveal="up" data-reveal-delay="320">
+                        <h3 class="font-headline-md text-headline-md mb-4">Security Ops</h3>
+                        <p class="font-body-md mb-6 text-surface-dim">
+                            Maintaining a secure perimeter through proactive monitoring and compliance enforcement.
+                        </p>
+                        <!-- Injected by render.js -->
+                        <div id="skill-security" class="grid grid-cols-2 gap-4 font-label-md"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION: Certifications
+        ============================================================ -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-section-gap">
+            <h2 class="font-headline-lg text-headline-lg mb-8 md:mb-12 text-center" data-reveal="up">Credentials &amp; Certifications</h2>
+
+            <!-- Cert cards — injected by render.js -->
+            <div id="cert-grid" class="grid md:grid-cols-4 gap-gutter"></div>
+        </section>
+
+        <!-- ============================================================
+             SECTION: Featured Project
+        ============================================================ -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-6 pb-12 md:py-section-gap">
+            <div class="bg-surface luxury-shadow rounded-xl overflow-hidden flex flex-col md:flex-row min-h-[400px] elegant-card" data-reveal="up">
+
+                <div class="md:w-1/2 p-8 md:p-12 space-y-6 flex flex-col justify-center" data-reveal="left">
+                    <span class="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-widest">Case Study / Lab</span>
+                    <h2 class="font-display-sm text-display-sm">DNS &amp; FTP Server Lab</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        An end-to-end simulation of enterprise-grade server infrastructure. This project involved
+                        configuring secure FTP access protocols and DNS resolution services within a virtualized
+                        networking environment, emphasizing reliability and secure file transfer.
+                    </p>
+                    <div class="pt-4">
+                        <span class="font-label-md text-label-md border-b-2 border-primary pb-1 cursor-pointer hover:opacity-70 transition-opacity">
+                            
+                        </span>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 relative bg-surface-container-high overflow-hidden min-h-[300px] elegant-media" data-reveal="right" data-reveal-delay="120">
+                    <img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTtmEcl0QNdKw9HWcy3UoJQ8mfYGAOygxkbDkUoQkkf1gWZtXLBP-xUnouGiD8_JBgEtCfBt_jebrHPjkQQtHib6-1UTXgwyObiDgO-yCReKB0Mb-oinfxgOH13qXML-gijsVwgXgVaGGdTmw5ns9zh5in4NqjcS4JbyoiMFk_JNkVDqes-oJ4lr3H5NurSt0c3AUNEPrJH0VBJqGprcZ5ilqJLit-t6bocuNAeJJWzsIgMHoSrFuMf2hmRrcvwU6kJ9Bu4Qta0qY"
+                        alt="Enterprise server rack in a modern data center"
+                        class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 mix-blend-multiply"
+                        loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION: Contact
+        ============================================================ -->
+        <section id="contact" class="bg-surface-container-low py-20 md:py-section-gap">
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="grid md:grid-cols-2 gap-20">
+
+                    <div class="space-y-8" data-reveal="left">
+                        <h2 class="font-headline-lg text-headline-lg">Let's engineer the future of your infrastructure.</h2>
+                        <div class="space-y-4">
+                            <p class="font-body-md text-on-surface-variant">Available for roles in Junior IT Infrastructure, System Engineering, and Enterprise Support.</p>
+                            <div class="inline-flex items-center gap-3 bg-surface p-4 rounded-lg border border-outline-variant/30 luxury-shadow">
+                                <!-- <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span> -->
+                                <span class="font-label-md text-label-md">Ready for new challenges</span>
+                            </div>
+                        </div>
+                        <!-- <div class="pt-8">
+                            <p class="font-caption text-caption text-outline mb-4">SYSTEM CONSOLE</p>
+                            <p class="font-label-md text-label-md text-on-surface-variant/70 italic">
+                                Initializing connection... <span class="animate-pulse">_</span>
+                            </p>
+                        </div> -->
+                    </div>
+
+                    <div class="grid gap-6" data-reveal="right">
+                        <a data-link="linkedin" href="#" class="flex items-center justify-between p-8 bg-surface rounded-lg luxury-shadow group hover:bg-primary hover:text-on-primary transition-all duration-300 elegant-card">
+                            <div>
+                                <p class="font-label-md text-label-md text-outline group-hover:text-on-primary/70 mb-1">Professional Profile</p>
+                                <p class="font-headline-md text-headline-md">LinkedIn</p>
+                            </div>
+                            <span class="material-symbols-outlined text-4xl opacity-20 group-hover:opacity-100 transition-opacity">open_in_new</span>
+                        </a>
+
+                        <a id="contact-email" href="mailto:contact@dimasrobby.com" class="flex items-center justify-between p-8 bg-surface rounded-lg luxury-shadow group hover:bg-primary hover:text-on-primary transition-all duration-300 elegant-card">
+                            <div>
+                                <p class="font-label-md text-label-md text-outline group-hover:text-on-primary/70 mb-1">Direct Correspondence</p>
+                                <p class="font-headline-md text-headline-md">Email</p>
+                            </div>
+                            <span class="material-symbols-outlined text-4xl opacity-20 group-hover:opacity-100 transition-opacity">alternate_email</span>
+                        </a>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <a id="contact-wa" href="#" class="p-6 bg-surface rounded-lg luxury-shadow hover:border-primary border border-transparent transition-all text-center elegant-card">
+                                <span class="material-symbols-outlined mb-2 text-on-surface-variant">chat</span>
+                                <p class="font-label-md text-label-md">WhatsApp</p>
+                            </a>
+                            <a id="contact-cv" href="#" download="Dimas Robby Candra-resume.pdf" class="p-6 bg-surface rounded-lg luxury-shadow hover:border-primary border border-transparent transition-all text-center elegant-card">
+                                <span class="material-symbols-outlined mb-2 text-on-surface-variant">download_for_offline</span>
+                                <p class="font-label-md text-label-md">Resume / CV</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================
+         FOOTER
+    ================================================================ -->
+    <footer class="bg-surface border-t border-outline-variant/20">
+        <div class="flex flex-col md:flex-row justify-between items-center w-full py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-8">
+            <div class="font-headline-md text-headline-md text-on-surface" data-site-name>Dimas Robby Candra</div>
+            <div class="font-body-md text-caption text-on-surface-variant">© 2026 Dimas Robby Candra. Engineered Excellence.</div>
+            <div class="flex gap-8">
+                <a data-link="linkedin" href="#" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">LinkedIn</a>
+                <!-- <a data-link="github"   href="#" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"></a> -->
+                <a id="contact-email-footer" href="mailto:contact@dimasrobby.com" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================
+         SCRIPTS (load order: data → render → nav)
+    ================================================================ -->
+    <script src="./js/data.js"></script>
+    <script src="./js/render.js"></script>
+    <script src="./js/nav.js"></script>
+
+</body>
+</html>
