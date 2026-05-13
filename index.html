@@ -1,10 +1,10 @@
 <!--
   File: index.html
-  Tujuan: Template utama portfolio, susunan seluruh section UI, dan metadata share untuk preview social media.
+  Tujuan: Template utama portfolio, susunan seluruh section UI, metadata share, dan konfigurasi favicon untuk browser.
   Dipakai oleh: Browser sebagai entry page static site.
-  Dependensi utama: js/tailwind.config.js, css/styles.css, js/data.js, js/render.js, js/nav.js, assets/og-preview.png, Tailwind CDN.
-  Fungsi public/utama: Menyediakan markup untuk nav, hero, experience, skills, certifications, project, contact, dan Open Graph/Twitter card metadata.
-  Side effect penting: Load font/CDN, load script render UI, bind anchor navigation, expose preview metadata/image untuk crawler social media.
+  Dependensi utama: js/tailwind.config.js, css/styles.css, js/data.js, js/render.js, js/nav.js, assets/og-preview.png, assets/favicon.svg, Tailwind CDN.
+  Fungsi public/utama: Menyediakan markup untuk nav, hero, experience, skills, certifications, project, contact, serta metadata share/favicon.
+  Side effect penting: Load font/CDN, load script render UI, bind anchor navigation, expose preview metadata/image untuk crawler social media, dan memuat favicon browser.
 -->
 <!DOCTYPE html>
 <html class="light" lang="en">
@@ -20,6 +20,7 @@
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://newbieprogrammer007.github.io/portofolio/"/>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
     <title>Dimas Robby Candra | IT Infrastructure &amp; Support Portfolio</title>
 
     <!-- Fonts -->
