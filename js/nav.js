@@ -1,17 +1,28 @@
 /* ==========================================================================
    File: nav.js
-   Tujuan: Mengelola interaksi navigasi dan reveal animation berbasis viewport.
+   Tujuan: Mengelola interaksi navigasi desktop/mobile, state navbar saat scroll, dan reveal animation berbasis viewport.
    Dipakai oleh: index.html saat DOM selesai dimuat.
    Dependensi utama: markup nav di index.html dan elemen dengan atribut `data-reveal`.
-   Fungsi public/utama: Toggle mobile menu, highlight nav aktif, aktifkan reveal animation saat elemen masuk viewport.
-   Side effect penting: Menambah/menghapus class DOM dan mengobservasi elemen via IntersectionObserver.
+   Fungsi public/utama: Toggle mobile menu, ubah navbar ke state condensed saat scroll, highlight nav aktif desktop/mobile, aktifkan reveal animation saat elemen masuk viewport.
+   Side effect penting: Menambah/menghapus class DOM, atribut aksesibilitas, dan mengobservasi elemen via IntersectionObserver.
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* -- Mobile menu toggle -- */
     const menuBtn = document.getElementById("mobile-menu-btn");
+    const menuCloseBtn = document.getElementById("mobile-menu-close");
     const mobileNav = document.getElementById("mobile-nav");
+    const siteHeader = document.getElementById("site-header");
+
+    if (siteHeader) {
+        const syncHeaderState = () => {
+            siteHeader.classList.toggle("is-condensed", window.scrollY > 24);
+        };
+
+        syncHeaderState();
+        window.addEventListener("scroll", syncHeaderState, { passive: true });
+    }
 
     if (menuBtn && mobileNav) {
         const setMenuState = (isOpen) => {
@@ -26,6 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const isOpen = !menuBtn.classList.contains("is-open");
             setMenuState(isOpen);
         });
+
+        if (menuCloseBtn) {
+            menuCloseBtn.addEventListener("click", () => {
+                setMenuState(false);
+            });
+        }
 
         mobileNav.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
@@ -55,8 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 mobileNavLinks.forEach(link => {
                     const active = link.getAttribute("href") === `#${id}`;
                     link.classList.toggle("active-mobile-link", active);
-                    link.classList.toggle("text-primary", active);
-                    link.classList.toggle("text-on-surface-variant", !active);
+                    link.setAttribute("aria-current", active ? "page" : "false");
                 });
             });
         },

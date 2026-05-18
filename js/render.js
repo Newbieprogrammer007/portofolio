@@ -1,10 +1,10 @@
 /* ==========================================================================
    File: render.js
-   Tujuan: Merender konten dinamis portfolio dari `SITE_DATA` ke section HTML.
+   Tujuan: Merender konten dinamis portfolio dari `SITE_DATA` ke section HTML, termasuk kartu certification yang dipakai modul interaksi terpisah.
    Dipakai oleh: index.html saat DOM selesai dimuat.
-   Dependensi utama: data.js, markup id target di index.html, Material Symbols classes.
+   Dependensi utama: data.js, markup id target di index.html, certifications.js, Material Symbols classes.
    Fungsi public/utama: Render stats, hero tags, experience, skills, certifications, dan contact links.
-   Side effect penting: Menulis DOM, mengisi href eksternal, tidak ada DB/file I/O.
+   Side effect penting: Menulis DOM, mengisi href eksternal, dan menyiapkan data attribute certification; tidak ada DB/file I/O.
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,23 +98,24 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ------------------------------------------------------------------ */
     const certGrid = $("cert-grid");
     if (certGrid) {
-        certGrid.innerHTML = SITE_DATA.certifications.map(cert => cert.url ? `
-            <a href="${cert.url}" target="_blank" rel="noreferrer" class="group block p-6 bg-surface border border-outline-variant/30 rounded-lg hover:border-primary focus-visible:border-primary transition-colors text-center elegant-card" data-reveal="up">
+        certGrid.innerHTML = SITE_DATA.certifications.map(cert => `
+            <button
+                type="button"
+                class="cert-card group w-full p-6 bg-surface border border-outline-variant/30 rounded-lg hover:border-primary focus-visible:border-primary transition-colors text-center elegant-card"
+                data-cert-trigger
+                data-cert-label="${cert.label}"
+                data-cert-image="${cert.image}"
+                data-cert-image-alt="${cert.imageAlt}"
+                data-reveal="up"
+            >
                 <div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-on-primary transition-all">
                     <span class="material-symbols-outlined">${cert.icon}</span>
                 </div>
                 <p class="font-label-md text-label-md">${cert.label}</p>
-                <p class="mt-3 text-caption text-outline opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
-                    Click for more detail
+                <p class="cert-card-hint mt-3 text-caption text-outline transition-opacity">
+                    Preview certificate
                 </p>
-            </a>
-        ` : `
-            <div class="group p-6 bg-surface border border-outline-variant/30 rounded-lg hover:border-primary transition-colors text-center elegant-card" data-reveal="up">
-                <div class="w-12 h-12 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-on-primary transition-all">
-                    <span class="material-symbols-outlined">${cert.icon}</span>
-                </div>
-                <p class="font-label-md text-label-md">${cert.label}</p>
-            </div>
+            </button>
         `).join("");
     }
 

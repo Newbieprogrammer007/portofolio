@@ -1,10 +1,10 @@
 /* ==========================================================================
    File: data.js
-   Tujuan: Menyimpan seluruh konten portfolio yang dirender ke UI.
-   Dipakai oleh: render.js dan markup di index.html saat halaman dimuat.
-   Dependensi utama: index.html, render.js.
+   Tujuan: Menyimpan seluruh konten portfolio yang dirender ke UI, termasuk metadata certification dan copy hero animated tagline per tag.
+   Dipakai oleh: render.js, hero-tagline.js, certifications.js, dan markup di index.html saat halaman dimuat.
+   Dependensi utama: index.html, render.js, hero-tagline.js, certifications.js.
    Fungsi public/utama: Mengekspos konstanta global `SITE_DATA`.
-   Side effect penting: Tidak ada I/O; perubahan data langsung mengubah konten UI.
+   Side effect penting: Tidak ada I/O; perubahan data langsung mengubah konten UI, hero animated tagline per tag, dan aset certification yang dipanggil browser.
    ========================================================================== */
 
 const SITE_DATA = {
@@ -12,7 +12,6 @@ const SITE_DATA = {
     /* -- Owner info -- */
     name:     "Dimas Robby Candra",
     role:     "IT Support Specialist",
-    tagline:  "Building reliable systems, secure operations, and efficient workplace technology. Expertly navigating the intersection of IT Support and Infrastructure management.",
     email:    "personal.dimascandra@gmail.com",
     status:   "Ready for new challenges",
 
@@ -25,6 +24,13 @@ const SITE_DATA = {
 
     /* -- Hero tags -- */
     tags: ["IT Support", "O365 Admin", "Network Troubleshooter", "System Engineer"],
+    taglineIntro: "Focused on",
+    taglineOutros: {
+        "IT Support": "for responsive troubleshooting, stable workplace systems, and productive day-to-day operations.",
+        "O365 Admin": "for controlled access, smooth collaboration, and reliable Microsoft 365 operations.",
+        "Network Troubleshooter": "for stable connectivity, faster incident recovery, and lower operational disruption.",
+        "System Engineer": "for practical infrastructure design, secure system workflows, and efficient service delivery.",
+    },
 
     /* -- Work experience -- */
     experience: [
@@ -88,11 +94,10 @@ const SITE_DATA = {
 
     /* -- Certifications -- */
     certifications: [
-        { icon: "verified", label: "CCNA" },
-        // { icon: "terminal", label: "IT Essentials" },
-        { icon: "support_agent", label: "Technical Support Fundamental", url: "https://coursera.org/share/51adfcdbe4e6c70ce41f3b1a12b4c25e" },
-        { icon: "psychology", label: "AI Fundamental", url: "https://www.dicoding.com/certificates/NVP7JN0ROXR0" },
-        { icon: "analytics", label: "Data Science Basic", url: "https://www.dicoding.com/certificates/N9ZO2V0GRPG5" },
+        { icon: "verified", label: "CCNA", image: "./assets/CCNA.jpg", imageAlt: "CCNA certificate preview" },
+        { icon: "support_agent", label: "Technical Support Fundamental", image: "./assets/Coursera.jpg", imageAlt: "Technical Support Fundamental certificate preview" },
+        { icon: "psychology", label: "AI Fundamental", image: "./assets/Dicoding Dasar AI.jpg", imageAlt: "AI Fundamental certificate preview" },
+        { icon: "analytics", label: "Data Science Basic", image: "./assets/Dicoding Dasar Data Science.jpg", imageAlt: "Data Science Basic certificate preview" },
     ],
 
     /* -- Social links -- */

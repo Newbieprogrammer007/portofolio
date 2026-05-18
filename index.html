@@ -1,10 +1,10 @@
 <!--
   File: index.html
-  Tujuan: Template utama portfolio, susunan seluruh section UI, metadata share, dan konfigurasi favicon untuk browser.
+  Tujuan: Template utama portfolio, susunan seluruh section UI, metadata share, favicon, navigasi responsif dengan shell mengecil saat scroll, hero animated tagline inline, dan host certification interaktif.
   Dipakai oleh: Browser sebagai entry page static site.
-  Dependensi utama: js/tailwind.config.js, css/styles.css, js/data.js, js/render.js, js/nav.js, assets/og-preview.png, assets/favicon.svg, Tailwind CDN.
-  Fungsi public/utama: Menyediakan markup untuk nav, hero, experience, skills, certifications, project, contact, serta metadata share/favicon.
-  Side effect penting: Load font/CDN, load script render UI, bind anchor navigation, expose preview metadata/image untuk crawler social media, dan memuat favicon browser.
+  Dependensi utama: js/tailwind.config.js, css/styles.css, js/data.js, js/render.js, js/hero-tagline.js, js/certifications.js, js/nav.js, assets/og-preview.png, assets/favicon.svg, Tailwind CDN.
+  Fungsi public/utama: Menyediakan markup untuk nav, hero, experience, skills, certifications, project, contact, serta metadata share/favicon dan host interaksi hero/certification/mobile menu.
+  Side effect penting: Load font/CDN, load script render UI, bind anchor navigation, expose preview metadata/image untuk crawler social media, memuat favicon, dan menjadi host DOM navbar shrink-on-scroll/hero animated tagline/certification interaktif.
 -->
 <!DOCTYPE html>
 <html class="light" lang="en">
@@ -40,15 +40,15 @@
     <!-- ================================================================
          HEADER / NAV
     ================================================================ -->
-    <header class="bg-surface/80 backdrop-blur-xl top-0 sticky border-b border-outline-variant/30 shadow-sm z-50">
-        <nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+    <header id="site-header" class="site-header top-0 sticky z-50">
+        <nav class="site-nav-shell flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 
             <div class="font-headline-md text-lg md:text-headline-md tracking-tight text-on-surface" data-site-name>
                 Dimas Robby Candra
             </div>
 
             <!-- Desktop links -->
-            <div class="hidden md:flex gap-8 items-center">
+            <div class="site-nav-links hidden md:flex gap-8 items-center">
                 <a class="font-label-md text-label-md text-primary relative active-dot cursor-pointer transition-opacity active:opacity-70" href="#overview">Overview</a>
                 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative" href="#experience">Experience</a>
                 <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer relative" href="#skills">Skills</a>
@@ -66,11 +66,26 @@
         </nav>
 
         <!-- Mobile dropdown -->
-        <div id="mobile-nav" class="mobile-nav-panel md:hidden bg-surface border-t border-outline-variant/20 px-margin-mobile py-4 space-y-4 shadow-sm" aria-hidden="true">
-            <a class="block font-label-md text-label-md text-primary" href="#overview">Overview</a>
-            <a class="block font-label-md text-label-md text-on-surface-variant" href="#experience">Experience</a>
-            <a class="block font-label-md text-label-md text-on-surface-variant" href="#skills">Skills</a>
-            <a class="block font-label-md text-label-md text-on-surface-variant" href="#contact">Contact</a>
+        <div id="mobile-nav" class="mobile-nav-panel md:hidden" aria-hidden="true">
+            <button id="mobile-menu-close" class="mobile-menu-close" type="button" aria-label="Close navigation">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+            <a class="mobile-nav-link active-mobile-link" href="#overview">
+                <span class="mobile-nav-arrow material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+                <span class="mobile-nav-label">Overview</span>
+            </a>
+            <a class="mobile-nav-link" href="#experience">
+                <span class="mobile-nav-arrow material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+                <span class="mobile-nav-label">Experience</span>
+            </a>
+            <a class="mobile-nav-link" href="#skills">
+                <span class="mobile-nav-arrow material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+                <span class="mobile-nav-label">Skills</span>
+            </a>
+            <a class="mobile-nav-link" href="#contact">
+                <span class="mobile-nav-arrow material-symbols-outlined" aria-hidden="true">arrow_right_alt</span>
+                <span class="mobile-nav-label">Contact</span>
+            </a>
         </div>
     </header>
 
@@ -79,9 +94,9 @@
         <!-- ============================================================
              SECTION: Hero (Overview)
         ============================================================ -->
-        <section id="overview" class="relative isolate overflow-hidden max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-20 pb-36 md:py-section-gap min-h-[calc(100svh-5rem)] md:min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center">
+        <section id="overview" class="relative isolate overflow-hidden max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-16 pb-28 md:py-section-gap min-h-[calc(100svh-5rem)] md:min-h-[calc(100vh-5rem)] flex flex-col justify-start md:justify-center items-center text-center">
             <div class="absolute inset-x-0 top-0 -z-10 h-full bg-[radial-gradient(circle_at_top,_rgba(233,193,118,0.18),_transparent_38%),linear-gradient(180deg,_rgba(251,249,248,1)_0%,_rgba(245,243,243,0.92)_100%)]"></div>
-            <div class="space-y-8 max-w-4xl">
+            <div class="space-y-6 md:space-y-8 max-w-4xl pt-8 md:pt-0">
                 <span class="font-label-md text-label-md tracking-widest text-on-surface-variant uppercase" data-site-role data-reveal="up">
                     IT Infrastructure Specialist
                 </span>
@@ -90,18 +105,27 @@
                     Dimas Robby Candra
                 </h1>
 
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed" data-reveal="up" data-reveal-delay="220">
-                    Building reliable systems, secure operations, and efficient workplace technology.
-                    Expertly navigating the intersection of IT Support and Infrastructure management.
+                <p class="hero-tagline font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed" data-hero-tagline data-reveal="up" data-reveal-delay="220">
+                    <span class="hero-tagline-content" data-hero-tagline-content>
+                        <span class="hero-tagline-intro" data-hero-tagline-intro>Focused on</span>
+                        <span class="hero-tagline-word-wrap" data-hero-tagline-word-wrap>
+                            <span class="hero-tagline-tag" data-hero-tagline-tag>IT Support</span>
+                        </span>
+                        <span class="hero-tagline-copy" data-hero-tagline-copy>for reliable systems, secure operations, and efficient workplace technology.</span>
+                    </span>
                 </p>
 
                 <!-- Hero tags — injected by render.js -->
-                <div id="hero-tags" class="flex flex-wrap justify-center gap-3 pt-4" data-reveal="up" data-reveal-delay="320"></div>
+                <div id="hero-tags" class="hidden" aria-hidden="true"></div>
 
                 <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal="up" data-reveal-delay="420">
-                    <a href="#contact" class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md hover:scale-[1.02] transition-transform active:scale-95">
-                        Establish Connection
-                        <span class="material-symbols-outlined" style="font-variation-settings:'opsz' 20;">arrow_forward</span>
+                    <a href="#contact" class="group relative inline-flex h-12 w-fit items-center overflow-hidden rounded-full bg-primary p-1 ps-6 pe-14 font-label-md text-label-md text-on-primary transition-all duration-500 hover:ps-14 hover:pe-6 active:scale-95">
+                        <span class="relative z-10 transition-all duration-500">
+                            Establish Connection
+                        </span>
+                        <span class="absolute right-1 flex h-10 w-10 items-center justify-center rounded-full bg-surface text-primary transition-all duration-500 group-hover:right-[calc(100%-44px)]">
+                            <span class="material-symbols-outlined transition-transform duration-500 rotate-45 group-hover:rotate-90" style="font-variation-settings:'opsz' 20;">arrow_upward</span>
+                        </span>
                     </a>
                     <a href="#experience" class="inline-flex items-center gap-2 px-6 py-4 rounded-lg border border-outline-variant/50 font-label-md text-label-md text-on-surface hover:border-primary hover:text-primary transition-colors">
                         View Experience
@@ -319,6 +343,8 @@
     ================================================================ -->
     <script src="./js/data.js"></script>
     <script src="./js/render.js"></script>
+    <script src="./js/hero-tagline.js"></script>
+    <script src="./js/certifications.js"></script>
     <script src="./js/nav.js"></script>
 
 </body>
